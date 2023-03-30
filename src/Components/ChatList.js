@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { connect } from 'react-redux';
+import * as actions from '../actions'
 
 function ChatList(props) {
   const { chatList = {}, setCurrentChat } = props;
@@ -44,4 +45,4 @@ const mapStateToProps = ({ chats = {} }) => {
   };
 };
 
-export default connect(mapStateToProps, null)(ChatList);
+export default connect(mapStateToProps, actions)(ChatList);

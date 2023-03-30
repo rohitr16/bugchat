@@ -1,39 +1,43 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-export default function (props) {
+function ChatList(props) {
+  const { chatList = {} } = props;
+
+  const renderList = () => {
+    return Object.keys(chatList).map((item) => {
+        const data = chatList[item]
+      return (
+        <li key={data.uuid}> 
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/chat_avatar_01.jpg"
+            alt=""
+          />
+          <div>
+            <h2>{data.name}</h2>
+            <h3>
+              <span className="status green"></span>
+              online
+            </h3>
+          </div>
+        </li>
+      );
+    });
+  };
   return (
-      <aside>
-        <header>
-          <input type="text" placeholder="search" />
-        </header>
-        <ul>
-          <li>
-            <img
-              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/chat_avatar_01.jpg"
-              alt=""
-            />
-            <div>
-              <h2>Prénom Nom</h2>
-              <h3>
-                <span className="status orange"></span>
-                offline
-              </h3>
-            </div>
-          </li>
-          <li>
-            <img
-              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/chat_avatar_02.jpg"
-              alt=""
-            />
-            <div>
-              <h2>Prénom Nom</h2>
-              <h3>
-                <span className="status green"></span>
-                online
-              </h3>
-            </div>
-          </li>
-        </ul>
-      </aside>
+    <aside>
+      <header>
+        <input type="text" placeholder="search" />
+      </header>
+      <ul>{renderList()}</ul>
+    </aside>
   );
 }
+
+const mapStateToProps = ({ chats = {} }) => {
+  return {
+    chatList: chats.chatList
+  };
+};
+
+export default connect(mapStateToProps, null)(ChatList);

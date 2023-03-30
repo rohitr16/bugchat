@@ -1,17 +1,34 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from "react-redux";
 import '../App.css';
 import ChatZone from './ChatZone';
 import ContactWindow from './ContactWindow';
 import InputZone from '../InputZone';
 import {dialogueEngine} from '../Utility/util';
+import * as actions from "../actions";
 
-const CommunicationZone = () => {
+const CommunicationZone = (props) => {
+
   const [state, setState] = React.useState({
     value: '',
     disposable: '',
     history: ['How can I help?'],
+    name: ''
   });
   const stateRef = React.useRef(state);
+
+  useEffect( () =>  {
+    const {getChats} = props;
+
+    async function fetchD(){
+      const res = await getChats({});
+      const {history, name} = res[Object.keys(res)[0]];
+      setState((state) => {
+        return {...state, history, name};
+      })
+    }
+    fetchD();
+  },[]);
 
   function handleChange(event) {
     setState({
@@ -30,7 +47,7 @@ const CommunicationZone = () => {
       };
       setState(newState);
       stateRef.current = newState;
-
+      props.setChatHistory(newState.name, newState.history);
       setTimeout(() => dialogueEngine(stateRef, setState), 3000);
     }
     cleanHistory();
@@ -63,4 +80,10 @@ const CommunicationZone = () => {
   );
 };
 
-export default CommunicationZone;
+const mapStateToProps = ({ chats = {} }) => {
+  return {
+    chats
+  };
+};
+
+export default connect(mapStateToProps, actions)(CommunicationZone);

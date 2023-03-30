@@ -14,6 +14,8 @@ export function chatsReducer(state = initialState, action = {}) {
             const clone = {...chatByName, history: payload.history};
             const chatList = {...state.chatList, clone};
             return {...state, chatList};
+        case ActionTypes.SET_CURRENT_CHAT:
+            return {...state, currentChat: payload.name}
         default:
             return state;
     }

@@ -29,6 +29,10 @@ export const setChatHistory = (name, history) => async dispatch => {
     
 }
 
+export const setCurrentChat = (name) => async dispatch => {
+    dispatch({type: ActionTypes.SET_CURRENT_CHAT, payload: {name}})
+}
+
 
 
 

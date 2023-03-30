@@ -1,14 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { connect } from 'react-redux';
 
 function ChatList(props) {
-  const { chatList = {} } = props;
+  const { chatList = {}, setCurrentChat } = props;
+
+  const handleClick =  (event) => {
+    setCurrentChat(event.target.textContent);
+  }
 
   const renderList = () => {
     return Object.keys(chatList).map((item) => {
         const data = chatList[item]
       return (
-        <li key={data.uuid}> 
+        <li key={data.uuid} onClick={ (event) => handleClick(event)} > 
           <img
             src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/chat_avatar_01.jpg"
             alt=""

@@ -9,10 +9,12 @@ import * as actions from "../actions";
 
 const CommunicationZone = (props) => {
 
+  const {currentChat, chatList = {}} = props;
+
   const [state, setState] = React.useState({
     value: '',
     disposable: '',
-    history: ['How can I help?'],
+    history: [{bot:'How can I help?'}],
     name: ''
   });
   const stateRef = React.useRef(state);
@@ -30,6 +32,19 @@ const CommunicationZone = (props) => {
     fetchD();
   },[]);
 
+  useEffect(() => {
+    const {history} = chatList[currentChat] || {};
+    if (history) {
+      setState((state) => {
+        return {
+          ...state,
+          history,
+          name: currentChat
+        }
+      })
+    }
+  },[currentChat, chatList])
+
   function handleChange(event) {
     setState({
       ...state,
@@ -43,12 +58,20 @@ const CommunicationZone = (props) => {
         ...state,
         value: '',
         disposable: event.target.value,
-        history: [...state.history, event.target.value],
+        history: [...state.history, {person:event.target.value}],
       };
       setState(newState);
       stateRef.current = newState;
       props.setChatHistory(newState.name, newState.history);
-      setTimeout(() => dialogueEngine(stateRef, setState), 3000);
+      setTimeout(() =>  {
+       const response =  dialogueEngine(stateRef);
+       const history = [...stateRef.current.history, {bot:response}];
+       setState({
+         ...stateRef.current,
+         history
+       });
+       props.setChatHistory(stateRef.current.name, history);
+      }, 1000);
     }
     cleanHistory();
   }
@@ -82,7 +105,8 @@ const CommunicationZone = (props) => {
 
 const mapStateToProps = ({ chats = {} }) => {
   return {
-    chats
+    chatList: chats.chatList,
+    currentChat: chats.currentChat
   };
 };
 

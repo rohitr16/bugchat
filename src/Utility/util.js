@@ -1,4 +1,4 @@
-export function dialogueEngine(stateRef, setState) {
+export function dialogueEngine(stateRef) {
     const answersBasic = [
       'can you elaborate?',
       'and why do you believe that is so?',
@@ -19,29 +19,22 @@ export function dialogueEngine(stateRef, setState) {
       'that does not sound like a bug',
     ];
 
+    let response;
+
     if (stateRef.current.disposable.length <= 7) {
-      let response =
+      response =
         answersAdjust[Math.floor(Math.random() * answersAdjust.length)];
-      setState({
-        ...stateRef.current,
-        history: [...stateRef.current.history, response],
-      });
+
     } else if (
       stateRef.current.history.length <= 3 &&
       stateRef.current.disposable.length > 6
     ) {
-      let response =
+      response =
         answersBasic[Math.floor(Math.random() * answersBasic.length)];
-      setState({
-        ...stateRef.current,
-        history: [...stateRef.current.history, response],
-      });
     } else if (stateRef.current.history.length >= 4) {
-      let response =
+      response =
         answersAdvanced[Math.floor(Math.random() * answersAdvanced.length)];
-      setState({
-        ...stateRef.current,
-        history: [...stateRef.current.history, response],
-      });
     }
+
+    return response;
   }

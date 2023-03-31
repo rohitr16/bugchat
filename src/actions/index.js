@@ -12,7 +12,6 @@ export const getChats = ({queryParams}) => async dispatch => {
 
         res.data.forEach((item) => {
             const clone = {...item};
-            clone.history = item.history.split(",");
             formattedRes[clone.name] = clone; 
         });
         

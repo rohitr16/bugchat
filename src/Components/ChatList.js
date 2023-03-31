@@ -1,19 +1,21 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions'
 
 function ChatList(props) {
-  const { chatList = {}, setCurrentChat } = props;
+  const { chatList = {}, setCurrentChat, currentChat } = props;
 
-  const handleClick =  (event) => {
-    setCurrentChat(event.target.textContent);
+  const handleClick =  (data) => {
+    setCurrentChat(data.name);
   }
 
   const renderList = () => {
     return Object.keys(chatList).map((item) => {
-        const data = chatList[item]
+        const data = chatList[item];
+        const className = (currentChat === data.name) ? 'selected': '';
+
       return (
-        <li key={data.uuid} onClick={ (event) => handleClick(event)} > 
+        <li key={data.uuid} onClick={ () => handleClick(data)} className={className} > 
           <img
             src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/chat_avatar_01.jpg"
             alt=""
@@ -41,7 +43,8 @@ function ChatList(props) {
 
 const mapStateToProps = ({ chats = {} }) => {
   return {
-    chatList: chats.chatList
+    chatList: chats.chatList,
+    currentChat: chats.currentChat
   };
 };
 

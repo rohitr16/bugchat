@@ -1,12 +1,18 @@
 [
     {
     "name": "Ducking Ducks",
-    "history": "HI, Hellow",
+    "history": [
+        {"bot": "How can i help"},
+        {"person": "HI"}
+    ],
     "uuid": "ajasdhsakd"
 
 }, {
     "name": "Ducking Ducksion",
-    "history": "HI, Hellow",
+    "history":  [
+        {"bot": "How can i help"},
+        {"person": "Hi There Botu"}
+    ],
     "uuid": "dasdsaddhd"
 
 }]

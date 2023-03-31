@@ -129,6 +129,10 @@ aside li{
 aside li:hover{
 	background-color:#5e616a;
 }
+
+.selected {
+	background-color:#131315;
+}
 h2,h3{
 	margin:0;
 }

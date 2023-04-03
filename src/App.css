@@ -125,6 +125,7 @@ aside ul{
 }
 aside li{
 	padding:10px 0;
+  display: flex;
 }
 aside li:hover{
 	background-color:#5e616a;
@@ -142,7 +143,9 @@ aside li img{
 	margin-right:8px;
 }
 aside li div{
-	display:inline-block;
+	display:flex;
+  flex-direction: column;
+  align-items: flex-start;
 	vertical-align:top;
 	margin-top:12px;
 }

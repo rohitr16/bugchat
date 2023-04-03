@@ -9,7 +9,7 @@ import * as actions from "../actions";
 
 const CommunicationZone = (props) => {
 
-  const {currentChat, chatList = {}} = props;
+  const {currentChat, chatList = {}, setCurrentChat, getChats} = props;
 
   const [state, setState] = React.useState({
     value: '',
@@ -20,17 +20,16 @@ const CommunicationZone = (props) => {
   const stateRef = React.useRef(state);
 
   useEffect( () =>  {
-    const {getChats} = props;
-
     async function fetchD(){
       const res = await getChats({});
       const {history, name} = res[Object.keys(res)[0]];
       setState((state) => {
         return {...state, history, name};
-      })
+      });
+      setCurrentChat(name);
     }
     fetchD();
-  },[]);
+  },[getChats, setCurrentChat]);
 
   useEffect(() => {
     const {history} = chatList[currentChat] || {};
@@ -62,7 +61,6 @@ const CommunicationZone = (props) => {
       };
       setState(newState);
       stateRef.current = newState;
-      props.setChatHistory(newState.name, newState.history);
       setTimeout(() =>  {
        const response =  dialogueEngine(stateRef);
        const history = [...stateRef.current.history, {bot:response}];

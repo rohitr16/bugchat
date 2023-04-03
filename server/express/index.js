@@ -3,6 +3,7 @@ const cors = require('cors');
 const httpErrors = require('http-errors');
 const pino = require('pino');
 const pinoHttp = require('pino-http');
+const bodyParser = require('body-parser');
 
 module.exports = function main(options, cb) {
   // Set default options
@@ -47,6 +48,7 @@ module.exports = function main(options, cb) {
 
   // Common middleware
   // app.use(/* ... */)
+  app.use(bodyParser.json());
   app.use(pinoHttp({ logger }));
   app.use(cors());
 

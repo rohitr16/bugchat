@@ -23,7 +23,18 @@ export const getChats = ({queryParams}) => async dispatch => {
     }
 };
 
+
 export const setChatHistory = (name, history) => async dispatch => {
+
+    const url = '/chats';
+    try {
+        const req = {name, history};
+        await axios.post(url, req);
+
+    } catch (error) {
+        console.log(error);
+        
+    }
     dispatch({type: ActionTypes.SET_CHAT_HISTORY, payload: {name, history}});
     
 }

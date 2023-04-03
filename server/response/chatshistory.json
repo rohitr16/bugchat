@@ -1,18 +1,149 @@
 [
-    {
+  {
     "name": "Ducking Ducks",
     "history": [
-        {"bot": "How can i help"},
-        {"person": "HI"}
+      {
+        "person": "hi"
+      },
+      {
+        "bot": "whatever"
+      },
+      {
+        "person": "hellow thwew"
+      },
+      {
+        "bot": "have you check the logs?"
+      },
+      {
+        "person": "hu"
+      },
+      {
+        "bot": "come on I am trying to help"
+      },
+      {
+        "person": "HI"
+      },
+      {
+        "bot": "come on I am trying to help"
+      },
+      {
+        "person": "hello , how are you doing?"
+      },
+      {
+        "bot": "have you check the logs?"
+      },
+      {
+        "person": "hi"
+      },
+      {
+        "bot": "whatever"
+      },
+      {
+        "person": "hu"
+      },
+      {
+        "bot": "you need to be a bit more specific"
+      }
     ],
     "uuid": "ajasdhsakd"
-
-}, {
+  },
+  {
     "name": "Ducking Ducksion",
-    "history":  [
-        {"bot": "How can i help"},
-        {"person": "Hi There Botu"}
+    "history": [
+      {
+        "bot": "How can i help"
+      },
+      {
+        "person": "Hi There Botu"
+      },
+      {
+        "person": "Hello there my friend"
+      },
+      {
+        "bot": "I need more details for this one"
+      },
+      {
+        "person": "what do you need?"
+      },
+      {
+        "bot": "Maybe its a typo"
+      },
+      {
+        "person": "yes its a typo"
+      },
+      {
+        "bot": "have you check the logs?"
+      },
+      {
+        "person": "not yet"
+      },
+      {
+        "bot": "you need to be a bit more specific"
+      },
+      {
+        "person": "hi"
+      },
+      {
+        "bot": "whatever"
+      }
     ],
     "uuid": "dasdsaddhd"
-
-}]
+  },
+  {
+    "name": "Mr Ducksion",
+    "history": [
+      {
+        "bot": "How can i help"
+      },
+      {
+        "person": "Hi There Botu"
+      },
+      {
+        "person": "There Botu"
+      },
+      {
+        "person": "No"
+      },
+      {
+        "bot": "whatever"
+      }
+    ],
+    "uuid": "dascdsaddhd"
+  },
+  {
+    "name": "Mrs Ducksion",
+    "history": [
+      {
+        "bot": "How can i help"
+      },
+      {
+        "person": "Hi There Botu"
+      },
+      {
+        "person": "There Botu"
+      },
+      {
+        "bot": "There's already"
+      },
+      {
+        "person": "hello there, how can you help me"
+      },
+      {
+        "bot": "have you check the logs?"
+      },
+      {
+        "person": "man o man"
+      },
+      {
+        "bot": "have you tried restarting?"
+      },
+      {
+        "person": "manner manner"
+      },
+      {
+        "bot": "what does the documentation say?"
+      }
+    ],
+    "uuid": "dasddsfsaddhd"
+  }
+]
